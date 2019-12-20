@@ -32,11 +32,18 @@ public class UserController {
         return employeeService.getEmployeeList();
     }
 
-    @GetMapping("/getById/{id}")
+    @GetMapping("/findById/{id}")
     @ApiOperation(value = "View employee based on Id", response = Employee.class)
     public Employee findById(@PathVariable("id") Integer id){
 
         return employeeService.findById(id);
+    }
+
+    @GetMapping("/findByName/{name}")
+    @ApiOperation(value = "View employee based on Id", response = Employee.class)
+    public Employee findByName(@PathVariable("name") String name){
+
+        return employeeService.findByName(name);
     }
 
     @PostMapping("/save")

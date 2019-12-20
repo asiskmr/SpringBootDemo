@@ -17,13 +17,13 @@ public class EmployeeService {
     public List<Employee> getEmployeeList(){
 
         List<Employee> empList = new ArrayList<>();
-        employeeDao.findAll().forEach(e -> empList.add(e));
+        employeeDao.findAll().forEach(empList::add);
         return empList;
     }
 
     public Employee findById(Integer id){
 
-        return employeeDao.findById(id).get();
+        return employeeDao.findById(id).orElse(null);
     }
     public Employee save(Employee employee){
 
@@ -34,5 +34,8 @@ public class EmployeeService {
         employeeDao.deleteById(id);
     }
 
+    public Employee findByName(String name) {
+       return employeeDao.findByName(name);
+    }
 }
 
