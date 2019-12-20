@@ -37,5 +37,10 @@ public class EmployeeService {
     public Employee findByName(String name) {
        return employeeDao.findByName(name);
     }
+
+    public List<Employee> getByNameEmail(String name, String emial) {
+        return employeeDao.getByNameEmail(name, emial);
+    }
+
 }
 
