@@ -2,10 +2,7 @@ package com.example.demo.controller;
 
 import com.example.demo.Service.EmployeeService;
 import com.example.demo.model.Employee;
-import io.swagger.annotations.Api;
-import io.swagger.annotations.ApiOperation;
-import io.swagger.annotations.ApiResponse;
-import io.swagger.annotations.ApiResponses;
+import io.swagger.annotations.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -19,6 +16,10 @@ public class UserController {
     @Autowired
     private EmployeeService employeeService;
 
+    @ApiImplicitParams({
+        @ApiImplicitParam(name = "Authorization", value = "Authorization token", required = true, dataType = "string",
+        paramType = "header")
+    })
     @GetMapping("/getAll")
     @ApiOperation(value = "View list of All employees", response = List.class)
     @ApiResponses(value = {
@@ -32,6 +33,10 @@ public class UserController {
         return employeeService.getEmployeeList();
     }
 
+    @ApiImplicitParams({
+            @ApiImplicitParam(name = "Authorization", value = "Authorization token", required = true, dataType = "string",
+                    paramType = "header")
+    })
     @GetMapping("/findById/{id}")
     @ApiOperation(value = "View employee based on Id", response = Employee.class)
     public Employee findById(@PathVariable("id") Integer id){
@@ -39,6 +44,10 @@ public class UserController {
         return employeeService.findById(id);
     }
 
+    @ApiImplicitParams({
+            @ApiImplicitParam(name = "Authorization", value = "Authorization token", required = true, dataType = "string",
+                    paramType = "header")
+    })
     @GetMapping("/findByName/{name}")
     @ApiOperation(value = "View employee based on Id", response = Employee.class)
     public Employee findByName(@PathVariable("name") String name){
@@ -46,6 +55,21 @@ public class UserController {
         return employeeService.findByName(name);
     }
 
+    @ApiImplicitParams({
+            @ApiImplicitParam(name = "Authorization", value = "Authorization token", required = true, dataType = "string",
+                    paramType = "header")
+    })
+    @GetMapping("/getByNameEmail")
+    @ApiOperation(value = "View employee based on Id", response = Employee.class)
+    public List<Employee> getByNameEmail(@RequestParam("name") String name, @RequestParam("email") String email){
+
+        return employeeService.getByNameEmail(name, email);
+    }
+
+    @ApiImplicitParams({
+            @ApiImplicitParam(name = "Authorization", value = "Authorization token", required = true, dataType = "string",
+                    paramType = "header")
+    })
     @PostMapping("/save")
     @ApiOperation(value = "Save employee", response = Employee.class)
     public Employee save(@RequestBody Employee employee){

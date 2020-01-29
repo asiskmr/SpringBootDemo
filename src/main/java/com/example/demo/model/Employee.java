@@ -15,15 +15,17 @@ public class Employee {
     @GeneratedValue(strategy = GenerationType.AUTO)
     @ApiModelProperty(notes = "The database generated user ID")
     private Integer id;
+
     @ApiModelProperty(notes = "The name of the user", required = true)
-    private String Name;
+    private String name;
+
     @ApiModelProperty(notes = "User email id")
     private String email;
 
     public Employee(){}
     public Employee(Integer id, String name, String email) {
         this.id = id;
-        Name = name;
+        this.name = name;
         this.email = email;
     }
 
@@ -36,11 +38,11 @@ public class Employee {
     }
 
     public String getName() {
-        return Name;
+        return name;
     }
 
     public void setName(String name) {
-        Name = name;
+        this.name = name;
     }
 
     public String getEmail() {
@@ -71,7 +73,7 @@ public class Employee {
     public String toString() {
         return "Employee{" +
                 "id=" + id +
-                ", Name='" + Name + '\'' +
+                ", name='" + name + '\'' +
                 ", email='" + email + '\'' +
                 '}';
     }

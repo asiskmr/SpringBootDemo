@@ -19,14 +19,13 @@ public class SwaggerConfig {
         return new Docket(DocumentationType.SWAGGER_2)
                 .select()
                 .apis(RequestHandlerSelectors.basePackage("com.example.demo.controller"))
-                .paths(regex("/user.*"))
                 .build()
                 .apiInfo(metaData());
     }
 
     private ApiInfo metaData(){
 
-        ApiInfo apiInfo = new ApiInfo(
+        return new ApiInfo(
                 "Spring Boot REST API",
                 "Spring Boot REST API For Demo Application",
                 "1.0",
@@ -37,6 +36,6 @@ public class SwaggerConfig {
                 "Apache License Version 2.0",
                 "https://www.apache.org/licenses/LICENSE-2.0"
         );
-        return apiInfo;
+
     }
 }
