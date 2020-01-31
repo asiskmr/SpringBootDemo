@@ -14,4 +14,4 @@ spring:
 
 
 jwt:
-      secret: javainuse
+      secret: secratekey
